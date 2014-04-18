@@ -25,7 +25,7 @@ import org.springframework.data.neo4j.annotation.GraphId;
  */
 public abstract class AbstractEntity {
     @GraphId
-    public Long id;
+    private  Long id;
 
     public AbstractEntity() {
     }
