@@ -47,8 +47,11 @@ dependencies {
     testRuntime 'org.slf4j:slf4j-simple:1.7.5'
 
     //aspectj dependencies
+<<<<<<< HEAD
     compile group: "org.springframework.data", name: "spring-data-neo4j", version: springDataGraphVersion
     testCompile group:"org.springframework", name: "spring-test", version: springVersion
+=======
+>>>>>>> 6b793dde23eabf4a65e5e5347ea6f48fb1157d12
     ajtools "org.aspectj:aspectjtools:${aspectjVersion}"
     compile "org.aspectj:aspectjrt:${aspectjVersion}"
     aspectpath group: "org.springframework.data", name: "spring-data-neo4j", version: springDataGraphVersion
@@ -63,7 +66,11 @@ task compileJava(overwrite: true, description: 'Compiles AspectJ Source', type: 
 }
 
 task compileTestJava(overwrite: true, description: 'Compiles AspectJ Test Source', type: Ajc) {
+<<<<<<< HEAD
     project.ext.sourceSet = sourceSets.test.
+=======
+    project.ext.sourceSet = sourceSets.test
+>>>>>>> 6b793dde23eabf4a65e5e5347ea6f48fb1157d12
     inputs.files(sourceSet.java.srcDirs)
     outputs.dir(sourceSet.output.classesDir)
     project.ext.aspectPath = files(configurations.aspectpath, jar.archivePath)
