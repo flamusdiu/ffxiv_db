@@ -4,12 +4,15 @@ import domains.WearableItem;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.aspectj.EnableSpringConfigured;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 import repos.BaseClassRepository;
 import repos.ItemRepository;
 import repos.WearableItemRepository;
 
+import javax.persistence.EntityManager;
 import java.util.Iterator;
 
 import static junit.framework.TestCase.assertNotNull;
@@ -22,7 +25,7 @@ import static org.junit.Assert.assertEquals;
 @ContextConfiguration(classes={AppConfigTest.class})
 public class TestBaseClass {
 
-    //@Autowired
+    @Autowired
     private BaseClassRepository baseClassRepository;
 
     @Autowired
@@ -31,16 +34,17 @@ public class TestBaseClass {
     @Autowired
     private ItemRepository itemRepository;
 
+    @Transactional
     @Test
     public void shouldCreateNode() {
 
         BaseClass testClass = new BaseClass();
-         testClass.setName("Archer");
-        System.out.println(testClass);
+        testClass.setName("Archer").persist();
         BaseClass testClass1 = baseClassRepository.findOne(testClass.getId());
         assertEquals(testClass1.getName(), "Archer");
     }
 
+    @Transactional
     @Test
     public void shouldAssignWearable() {
 
