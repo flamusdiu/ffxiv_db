@@ -3,13 +3,9 @@ import domains.Item;
 import domains.WearableItem;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.neo4j.graphdb.GraphDatabaseService;
-import org.neo4j.graphdb.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
 import repos.BaseClassRepository;
 import repos.ItemRepository;
 import repos.WearableItemRepository;
@@ -26,7 +22,7 @@ import static org.junit.Assert.assertEquals;
 @ContextConfiguration(classes={AppConfigTest.class})
 public class TestBaseClass {
 
-    @Autowired
+    //@Autowired
     private BaseClassRepository baseClassRepository;
 
     @Autowired
@@ -40,7 +36,7 @@ public class TestBaseClass {
 
         BaseClass testClass = new BaseClass();
          testClass.setName("Archer");
-
+        System.out.println(testClass);
         BaseClass testClass1 = baseClassRepository.findOne(testClass.getId());
         assertEquals(testClass1.getName(), "Archer");
     }
@@ -48,9 +44,9 @@ public class TestBaseClass {
     @Test
     public void shouldAssignWearable() {
 
-        BaseClass testClass = new BaseClass("Archer").persist();
+        BaseClass testClass = new BaseClass("Archer");
 
-        Item item = new Item("Test item", 20).persist();
+        Item item = new Item("Test item", 20);
 
         testClass = baseClassRepository.save(testClass);
         item = itemRepository.save(item);
