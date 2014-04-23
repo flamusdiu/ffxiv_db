@@ -31,10 +31,13 @@ public abstract class AbstractEntity {
     }
 
     public Long getId () {
+        /*try {
+            Method m = this.getClass().getMethod("getNodeId");
+            return (Long)m.invoke(this);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to invoke getNodeId()");
+        }*/
         return this.id;
     }
 
-    public void setId (Long id) {
-        this.id = id;
-    }
 }

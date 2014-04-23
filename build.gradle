@@ -23,7 +23,7 @@ repositories {
 
 project.ext {
     springVersion = "4.0.3.RELEASE"
-    neo4jVersion = "2.0.1.RELEASE"
+    neo4jVersion = "2.0.2"
     springDataGraphVersion = "3.0.1.RELEASE"
     aspectjVersion = "1.7.4"
 
@@ -44,6 +44,7 @@ dependencies {
     compile "org.neo4j:neo4j:${neo4jVersion}"
     // Provides Repository based Object <-> Graph Mapping
     compile "javax.validation:validation-api:1.0.0.GA"
+    compile "org.springframework.data:spring-data-neo4j:${springDataGraphVersion}"
     compile "org.springframework.data:spring-data-neo4j-aspects:${springDataGraphVersion}"
     compile 'javax.persistence:persistence-api:1.0-rev-1'
 
@@ -58,7 +59,7 @@ dependencies {
     //aspectj dependencies
     aspectpath "org.aspectj:aspectjtools:${aspectjVersion}"
     compile "org.aspectj:aspectjrt:${aspectjVersion}"
-    aspectpath group: "org.springframework.data", name: "spring-data-neo4j", version: springDataGraphVersion
+    aspectpath group: "org.springframework.data", name: "spring-data-neo4j-aspects", version: springDataGraphVersion
 }
 
 configurations {

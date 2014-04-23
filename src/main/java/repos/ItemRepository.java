@@ -9,4 +9,6 @@ import org.springframework.data.neo4j.repository.GraphRepository;
 public interface ItemRepository extends GraphRepository<Item>{
 
     Item findByName (String name);
+
+    Item findById (Long graphId);
 }

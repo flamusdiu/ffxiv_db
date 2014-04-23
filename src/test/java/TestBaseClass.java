@@ -4,7 +4,6 @@ import domains.WearableItem;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.aspectj.EnableSpringConfigured;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,7 +11,6 @@ import repos.BaseClassRepository;
 import repos.ItemRepository;
 import repos.WearableItemRepository;
 
-import javax.persistence.EntityManager;
 import java.util.Iterator;
 
 import static junit.framework.TestCase.assertNotNull;
@@ -38,8 +36,7 @@ public class TestBaseClass {
     @Test
     public void shouldCreateNode() {
 
-        BaseClass testClass = new BaseClass();
-        testClass.setName("Archer").persist();
+        BaseClass testClass = baseClassRepository.save(new BaseClass("Archer"));
         BaseClass testClass1 = baseClassRepository.findOne(testClass.getId());
         assertEquals(testClass1.getName(), "Archer");
     }
@@ -55,12 +52,14 @@ public class TestBaseClass {
         testClass = baseClassRepository.save(testClass);
         item = itemRepository.save(item);
 
+        System.out.println(item);
+
         WearableItem wearableItem = testClass.wears(item, 20);
         wearableItemRepository.save(wearableItem);
 
-        Item item1 = itemRepository.findByName(item.getName());
-        assertEquals(item, item1);
+        Item item1 = itemRepository.findById(item.getId());
         assertNotNull("did not find item", item1);
+        assertEquals(item.toString(), item1.toString());
 
         Iterator<BaseClass> classes = item1.getClasses().iterator();
 
