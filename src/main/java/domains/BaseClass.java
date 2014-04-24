@@ -19,10 +19,7 @@
 package domains;
 
 import org.springframework.data.annotation.TypeAlias;
-import org.springframework.data.neo4j.annotation.Indexed;
-import org.springframework.data.neo4j.annotation.NodeEntity;
-import org.springframework.data.neo4j.annotation.RelatedTo;
-import org.springframework.data.neo4j.annotation.RelatedToVia;
+import org.springframework.data.neo4j.annotation.*;
 
 import java.util.Collection;
 import java.util.Set;
@@ -32,7 +29,9 @@ import java.util.Set;
  */
 @NodeEntity
 @TypeAlias(value = "Class")
-public class BaseClass extends AbstractEntity {
+public class BaseClass {
+    @GraphId
+    private  Long id;
 
     @Indexed(unique = true)
     private String name;
@@ -83,8 +82,6 @@ public class BaseClass extends AbstractEntity {
         final WearableItem wearableItem = new WearableItem(this,item,wearableAtLevel);
 
         wearableItems.add(wearableItem);
-
-        System.out.println(wearableItems.size());
         return wearableItem;
     }
 

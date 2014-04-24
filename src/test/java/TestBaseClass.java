@@ -1,6 +1,7 @@
 import domains.BaseClass;
 import domains.Item;
 import domains.WearableItem;
+import junit.framework.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,8 @@ public class TestBaseClass {
     @Test
     public void shouldCreateNode() {
 
-        BaseClass testClass = baseClassRepository.save(new BaseClass("Archer"));
+        BaseClass testClass;
+        testClass = new BaseClass("Archer").persist();
         BaseClass testClass1 = baseClassRepository.findOne(testClass.getNodeId());
         assertEquals(testClass1.getName(), "Archer");
     }
@@ -55,11 +57,6 @@ public class TestBaseClass {
         assertNotNull("did not find item", item1);
         assertEquals(item, item1);
 
-        Iterator<BaseClass> classes = item1.getClasses().iterator();
-
-        System.out.println(item.getClasses().size());
-        while(classes.hasNext()) {
-            System.out.println(classes.next().getName());
-        }
+        assertEquals(item1.getClasses().size(), 1);
     }
 }

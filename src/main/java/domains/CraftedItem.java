@@ -1,16 +1,16 @@
 package domains;
 
-import org.springframework.data.neo4j.annotation.EndNode;
-import org.springframework.data.neo4j.annotation.Fetch;
-import org.springframework.data.neo4j.annotation.RelationshipEntity;
-import org.springframework.data.neo4j.annotation.StartNode;
+import org.springframework.data.neo4j.annotation.*;
 
 /**
  * Created by jesse on 4/14/14.
  */
 
 @RelationshipEntity(type = "CRAFTED_BY")
-public class CraftedItem extends AbstractEntity {
+public class CraftedItem{
+
+    @GraphId
+    private  Long id;
 
     @StartNode
     private CraftingClass craftingClass;

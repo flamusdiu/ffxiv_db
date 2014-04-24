@@ -3,9 +3,7 @@ package domains;
 import org.neo4j.graphdb.Direction;
 import org.neo4j.helpers.collection.IteratorUtil;
 import org.springframework.data.annotation.TypeAlias;
-import org.springframework.data.neo4j.annotation.NodeEntity;
-import org.springframework.data.neo4j.annotation.RelatedTo;
-import org.springframework.data.neo4j.annotation.RelatedToVia;
+import org.springframework.data.neo4j.annotation.*;
 
 import java.util.Collection;
 import java.util.Set;
@@ -15,8 +13,12 @@ import java.util.Set;
  */
 @NodeEntity
 @TypeAlias(value = "Item")
-public class Item extends AbstractEntity {
+public class Item  {
 
+    @GraphId
+    private  Long id;
+
+    @Indexed(unique = true)
     private String name;
 
     private String description;

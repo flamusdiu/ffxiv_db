@@ -18,7 +18,7 @@ public class CraftingClass extends BaseClass{
     Set<CraftedItem> craftedItems;
 
     public CraftedItem creates(Item item, Integer skillLevel) {
-        CraftedItem craftedItem = new CraftedItem(this, item, skillLevel);
+        final CraftedItem craftedItem = new CraftedItem(this, item, skillLevel);
 
         craftedItems.add(craftedItem);
 

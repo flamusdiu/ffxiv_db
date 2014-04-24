@@ -1,6 +1,7 @@
 package domains;
 
 import org.springframework.data.neo4j.annotation.EndNode;
+import org.springframework.data.neo4j.annotation.GraphId;
 import org.springframework.data.neo4j.annotation.RelationshipEntity;
 import org.springframework.data.neo4j.annotation.StartNode;
 
@@ -9,10 +10,12 @@ import org.springframework.data.neo4j.annotation.StartNode;
  */
 
 @RelationshipEntity(type = "WEARS")
-public class WearableItem extends AbstractEntity {
+public class WearableItem{
+    @GraphId
+    private  Long id;
 
-    @StartNode private Item item;
-    @EndNode private BaseClass wearableClass;
+    @StartNode private BaseClass wearableClass;
+    @EndNode private Item item;
 
     private Integer level;
 
