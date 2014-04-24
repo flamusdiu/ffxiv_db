@@ -56,7 +56,7 @@ public class Item extends AbstractEntity {
     @Override
     public String toString() {
         return "Item{" +
-                "id='" + getId() + '\'' +
+                "id='" + getNodeId() + '\'' +
                 ", name='" + name + '\'' +
                 ", itemLevel=" + itemLevel +
                 '}';

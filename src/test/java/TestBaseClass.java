@@ -37,7 +37,7 @@ public class TestBaseClass {
     public void shouldCreateNode() {
 
         BaseClass testClass = baseClassRepository.save(new BaseClass("Archer"));
-        BaseClass testClass1 = baseClassRepository.findOne(testClass.getId());
+        BaseClass testClass1 = baseClassRepository.findOne(testClass.getNodeId());
         assertEquals(testClass1.getName(), "Archer");
     }
 
@@ -45,21 +45,15 @@ public class TestBaseClass {
     @Test
     public void shouldAssignWearable() {
 
-        BaseClass testClass = new BaseClass("Archer");
+        BaseClass testClass = new BaseClass("Archer").persist();
 
-        Item item = new Item("Test item", 20);
+        Item item = new Item("Test item", 20).persist();
 
-        testClass = baseClassRepository.save(testClass);
-        item = itemRepository.save(item);
+        WearableItem wearableItem = testClass.wears(item, 20).persist();
 
-        System.out.println(item);
-
-        WearableItem wearableItem = testClass.wears(item, 20);
-        wearableItemRepository.save(wearableItem);
-
-        Item item1 = itemRepository.findById(item.getId());
+        Item item1 = itemRepository.findById(item.getNodeId());
         assertNotNull("did not find item", item1);
-        assertEquals(item.toString(), item1.toString());
+        assertEquals(item, item1);
 
         Iterator<BaseClass> classes = item1.getClasses().iterator();
 

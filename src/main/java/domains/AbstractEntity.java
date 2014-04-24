@@ -30,14 +30,17 @@ public abstract class AbstractEntity {
     public AbstractEntity() {
     }
 
-    public Long getId () {
-        /*try {
+    /*public Long getNodeId() {
+        try {
             Method m = this.getClass().getMethod("getNodeId");
             return (Long)m.invoke(this);
         } catch (Exception e) {
             throw new RuntimeException("Failed to invoke getNodeId()");
-        }*/
-        return this.id;
+        }
     }
+
+    public void setNodeId(Long nodeId) {
+        this.nodeId = nodeId;
+    } */
 
 }

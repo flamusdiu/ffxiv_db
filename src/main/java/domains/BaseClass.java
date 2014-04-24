@@ -84,6 +84,7 @@ public class BaseClass extends AbstractEntity {
 
         wearableItems.add(wearableItem);
 
+        System.out.println(wearableItems.size());
         return wearableItem;
     }
 
