@@ -12,7 +12,7 @@ import java.util.Set;
 
 @NodeEntity
 @TypeAlias(value = "CraftingClass")
-public class CraftingClass extends BaseClass{
+public class CraftingClass extends BaseClass {
 
     @RelatedToVia(type = "CRAFTED_BY")
     Set<CraftedItem> craftedItems;
@@ -23,6 +23,13 @@ public class CraftingClass extends BaseClass{
         craftedItems.add(craftedItem);
 
         return craftedItem;
+
+    }
+
+    public CraftingClass() { };
+
+    public CraftingClass(String name){
+        super(name);
     }
 
 }

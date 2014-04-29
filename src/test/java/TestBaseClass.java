@@ -28,9 +28,6 @@ public class TestBaseClass {
     private BaseClassRepository baseClassRepository;
 
     @Autowired
-    private WearableItemRepository wearableItemRepository;
-
-    @Autowired
     private ItemRepository itemRepository;
 
     @Transactional

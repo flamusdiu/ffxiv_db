@@ -14,18 +14,18 @@ buildscript {
 }
 
 repositories {
+    mavenLocal()
     maven {
         url "http://m2.neo4j.org/content/repositories/releases/"
     }
     mavenCentral()
-    mavenLocal()
 }
 
 project.ext {
     springVersion = "4.0.3.RELEASE"
     neo4jVersion = "2.0.2"
-    springDataGraphVersion = "3.0.1.RELEASE"
-    aspectjVersion = "1.7.4"
+    springDataGraphVersion = "3.0.2.RELEASE"
+    aspectjVersion = "1.8.0"
 
     sourceCompatibility = 1.7
     targetCompatibility = 1.7
@@ -39,7 +39,7 @@ compileAspect {
 
 dependencies {
     compile 'org.slf4j:slf4j-api:1.7.6'
-
+    //compile "org.springframework:spring-aspects:${springVersion}"
     compile "org.springframework:spring-context:${springVersion}"
     compile "org.neo4j:neo4j:${neo4jVersion}"
     // Provides Repository based Object <-> Graph Mapping
@@ -57,18 +57,13 @@ dependencies {
     testRuntime 'org.slf4j:slf4j-simple:1.7.5'
 
     //aspectj dependencies
-    aspectpath "org.aspectj:aspectjtools:${aspectjVersion}"
-    compile "org.aspectj:aspectjrt:${aspectjVersion}"
-    aspectpath group: "org.springframework.data", name: "spring-data-neo4j-aspects", version: springDataGraphVersion
-}
-
-configurations {
-    runtime
-    compileJava
-    testCompileJava
+    //ajInpath "org.aspectj:aspectjtools:${aspectjVersion}"
+    //compile "org.aspectj:aspectjrt:${aspectjVersion}"
+    aspectpath "org.springframework.data:spring-data-neo4j:${springDataGraphVersion}"
+    aspectpath "org.springframework.data:spring-data-neo4j-aspects:${springDataGraphVersion}"
 }
 
 // Generate wrapper for Gradle
 task wrapper(type: Wrapper) {
-    gradleVersion = '1.11'
+    gradleVersion = '1.12'
 }

@@ -41,7 +41,8 @@ public class BaseClass {
     @RelatedTo(type = "AdvancedClass", elementClass = BaseClass.class)
     Set<BaseClass> advanceClass;
 
-    @RelatedToVia(type = "WEARS")
+
+    @RelatedToVia(type = "WEARS", elementClass = WearableItem.class)
     Set<WearableItem> wearableItems;
 
     @RelatedTo(type = "WEARS")
